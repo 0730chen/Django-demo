@@ -8,8 +8,11 @@ def index(request):
 	
 	boards = Board.objects.all()
 	boards_names = list()
-	
-	return render(request,'home.html',{'boards':boards})
+	print(request)
+	return render(request,'index.html')
 def GetAPi(request):
 
 	return HttpResponse("哈哈")
+def home(request):
+
+    return render(request,'home.html')
