@@ -29,16 +29,28 @@
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+      <li><a href="/time" target="_blank" rel="noopener">time</a></li>
+      <li><a href="/digital" target="_blank" rel="noopener">digital</a></li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import axios from 'axios'
+
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  getApi(){
+    axios.get('http://127.0.0.1:8000/API').then(res=>{
+      console.log(res)
+    })
+  }
+  created() {
+   this.getApi() 
+  }
 }
 </script>
 
