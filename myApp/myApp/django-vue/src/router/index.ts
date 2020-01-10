@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component:()=>import('../components/Rank.vue')
   },
   {
     path: '/about',
@@ -27,6 +27,11 @@ const routes = [
     path:'/time',
     name:'time',
     component:()=>import('../components/rd-time-flop.vue')
+  },
+  {
+    path:'/Rank',
+    name:'name',
+    component:Home
   }
 ]
 

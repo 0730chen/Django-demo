@@ -38,19 +38,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import axios from 'axios'
-
-
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
-  getApi(){
-    axios.get('http://127.0.0.1:8000/API').then(res=>{
-      console.log(res)
-    })
-  }
-  created() {
-   this.getApi() 
-  }
+   private data(){
+     return {
+     }
+   }
 }
 </script>
 

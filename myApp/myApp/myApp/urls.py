@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
 from polls import views
+from spider import movieView
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url('home',views.home,name='home'),
     url(r'^admin/', admin.site.urls),
-    url('API',views.GetAPi)
+    url('API',views.GetAPi),
+    url('GetMoive',movieView.GetMoive)
 ]
