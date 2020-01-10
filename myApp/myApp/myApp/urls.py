@@ -19,7 +19,7 @@ from django.conf.urls import url
 from polls import views
 
 urlpatterns = [
-    url('index', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
     url('home',views.home,name='home'),
     url(r'^admin/', admin.site.urls),
     url('API',views.GetAPi)
