@@ -8,25 +8,37 @@
 			<span :class="{active:isActive}">综合票房</span>
 			<span :class="{active:!isActive}">切换图表</span>
 		</div>
-		<div class="full">全屏</div>
+		<div class="full" @click="fullScreen">
+			<svg class="icon" aria-hidden="true">
+    		<use xlink:href="#icon-quanping"></use>
+			</svg>
+			</div>
 	</div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import {Component, Watch} from 'vue-property-decorator'
+import screenfull from 'screenfull'
 
 @Component({
 
 })
 export default class TitleBar extends Vue {
 	isActive:Boolean = true
-	Time:Date|string|number
+	Time:any
 	timer:any
 	private data(){
 		return {
-			Time:this.GetTime()
+			Time:this.GetTime(),
+			screenfull:false,
 		}
 	}
+	 fullScreen() {
+            if (!screenfull.isEnabled) {
+                return false
+            }
+            screenfull.toggle()
+        }
 	HandleActive(){
 		this.isActive = !this.isActive
 	}
@@ -35,13 +47,21 @@ export default class TitleBar extends Vue {
 		this.Time = new Date()
 		let Year = this.Time.getFullYear()
 		let Month = this.Time.getMonth()
+		let Days = this.Time.getDate()
 		let Hours = this.Time.getHours()
 		let Min = this.Time.getMinutes()
 		let sec = this.Time.getSeconds()
-		if(Min<10){
-			return `${Year}年${Month+1}月${Hours}:0${Min}:${sec}`
+		let Click = `${Year}年${Month+1}月${Days}日${Hours}:${Min}:${sec}`
+		if(Hours<10){
+			Click = `${Year}年${Month+1}月${Days}日0${Hours}:${Min}:${sec}`
 		}
-		return `${Year}年${Month+1}月${Hours}:${Min}:${sec}`
+		if(Min<10){
+			Click = `${Year}年${Month+1}月${Days}日${Hours}:0${Min}:${sec}`
+		}
+		if(sec<10){
+			Click = `${Year}年${Month+1}月${Days}日${Hours}:0${Min}:0${sec}`
+		}
+		return Click
 	}
 	created() {
 		let timer = setTimeout(() => {
@@ -106,7 +126,6 @@ export default class TitleBar extends Vue {
 		top:0;
 		right: 30px;
 		transform: translateY(10px);
-		border:1px solid white;
 	}
 	}
 	.active{
