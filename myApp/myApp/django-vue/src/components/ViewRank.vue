@@ -47,17 +47,23 @@ export default class ViewRank extends Vue{
 	flag:Boolean|undefined
 	current:number| undefined
 	timer:any
+	DateTime:Object|undefined
 	private data(){
 		return 	{
 		MovieList:[],
 		flag:false,
-		current:0
+		current:0,
+		DateTime:{}
 		}
 	}
   getApi(){
 	  return new Promise((resolve,reject)=>{
 		  	axios.get('http://127.0.0.1:8000/GetMoive').then(res=>{
 	   		this.MovieList = res.data.data.list
+			   let{updateInfo,splitTotalBox,serverTime,totalBox,queryDate} = res.data.data
+			   this.DateTime['Time'] = serverTime
+			   this.DateTime['Total'] = totalBox
+			   this.DateTime['queryDate'] = queryDate
 	  		resolve()
      	})
 	  })
@@ -70,7 +76,9 @@ export default class ViewRank extends Vue{
   created() {
    this.getApi().then(()=>{
 	   this.HandleColor(0,event)
+	   this.$emit('Data',this.DateTime)
    })
+
   }
   updated() {
 		
@@ -107,7 +115,7 @@ export default class ViewRank extends Vue{
 			height: 100px;
 			white-space: nowrap;
 			table-layout: fixed;
-			margin-top: 0px;
+			margin-top: -1px;
 			z-index:100;
 			thead{
 				tr{

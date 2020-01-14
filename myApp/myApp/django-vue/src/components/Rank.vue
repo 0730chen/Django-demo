@@ -2,9 +2,9 @@
 	<div class="Rank">
 		<TitleBar/>
     <div class="container"> 
-    <OneMoive :MovieMessage="MovieMessage"/>
+    <OneMoive :MovieMessage="MovieMessage" :MovieData="MovieData"/>
     <div></div>
-		<ViewRank v-on:movie="HandleMovie"/>
+		<ViewRank v-on:movie="HandleMovie" v-on:Data="HandleDate"/>
     </div>
 	</div>
 </template>
@@ -25,13 +25,19 @@ export default class HelloWorld extends Vue {
   @Prop() 
   private msg!: string;
   MovieMessage!:Array<any>
+  MovieData:Object|undefined   
   private data() {
     return {
-      MovieMessage:[]
+      MovieMessage:[],
+      MovieData:{}
     }
   }
   HandleMovie(msg:any){
     this.MovieMessage = msg
+  }
+  HandleDate(date:any){
+    this.MovieData = date
+    
   }
   
 }
