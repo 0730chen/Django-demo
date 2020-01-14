@@ -13,7 +13,7 @@
 		<div>场均人次<h3>{{MovieMessage.avgShowView}}</h3></div>
 		<div>上座率<h3>{{MovieMessage.avgSeatView}}</h3></div>
 		</div>
-		<DaySelect :MovieData= "MovieData"/>	
+		<DaySelect :MovieData= "MovieData" v-on:DateSelect = "HandleDate"/>	
 	</div>
 </template>
 <script lang="ts">
@@ -31,9 +31,15 @@ export default class OneMoive extends Vue {
   MovieMessage:Array<any>|undefined
   @Prop()
   MovieData:any
+  DateSelect:string
   private data() {
 	  return {
+		  DateSelect:''
 	  }
+  }
+  HandleDate(msg){
+	 this.DateSelect = msg
+	 this.$emit('DateSelect',this.DateSelect)
   }
   created() {
 	  
@@ -52,9 +58,6 @@ export default class OneMoive extends Vue {
 		display: flex;
 		flex-direction: column;
 		font-size: 20px;
-		div{
-			padding: 10px 0;
-		}
 		.movieName{
 			font-size: 35px;
 

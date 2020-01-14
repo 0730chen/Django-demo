@@ -43,29 +43,47 @@ import axios from 'axios'
 	
 })
 export default class ViewRank extends Vue{
+	@Prop()
+	DateSelect:any
 	MovieList:Array<any>|undefined
 	flag:Boolean|undefined
 	current:number| undefined
 	timer:any
 	DateTime:any|undefined
+	nowDate:string
 	private data(){
 		return 	{
 		MovieList:[],
 		flag:false,
 		current:0,
-		DateTime:{}
+		DateTime:{},
+		nowDate:this.getnowDate(new Date())
 		}
 	}
-  getApi(){
+	getnowDate(value){
+		let date = new Date(value)
+		let Y = date.getFullYear()
+		let M = date.getMonth()+1
+		let D = date.getDate()
+		let str =`${Y}${M}${D}`
+		if(M<10){
+			str = `${Y}0${M}${D}`
+		}else if(D<10){
+			str =  `${Y}${M}0${D}`
+		}else{
+
+		}
+		return str
+	}
+  getApi(arg){
 	  return new Promise((resolve,reject)=>{
-		  	axios.get('http://127.0.0.1:8000/GetMoive').then(res=>{
+		  	axios.get(`http://127.0.0.1:8000/GetMoive?beginDate=${arg}`).then(res=>{
 	   		this.MovieList = res.data.data.list
-			   (this as any)
 			   let{updateInfo,splitTotalBox,serverTime,totalBox,queryDate} = res.data.data
 			   this.DateTime['Time'] = serverTime
 			   this.DateTime['Total'] = totalBox
 			   this.DateTime['queryDate'] = queryDate
-	  		resolve()
+	  		resolve(this.MovieList)
      	})
 	  })
   }
@@ -75,14 +93,28 @@ export default class ViewRank extends Vue{
 	  this.$emit('movie',List)
   }
   created() {
-   this.getApi().then(()=>{
+	   let arg = this.nowDate
+	   console.log(arg)
+   	   this.getApi(arg).then(()=>{
 	   this.HandleColor(0,event)
 	   this.$emit('Data',this.DateTime)
    })
 
   }
+  get Movielist(){
+	  let arg = this.nowDate
+	  this.getApi(arg).then((res)=>{
+		  return res
+	  })
+	  return this.MovieList
+  }
   updated() {
-		
+	  	let arg = this.DateSelect
+		console.log(arg)
+// 	 this.getApi(arg).then(()=>{
+// 	   this.HandleColor(0,event)
+// 	   this.$emit('Data',this.DateTime)
+//    })
 		//  this.timer = setTimeout(()=>{
 		
 		// 	this.getApi()

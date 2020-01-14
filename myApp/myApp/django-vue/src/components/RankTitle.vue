@@ -54,12 +54,12 @@ export default class TitleBar extends Vue {
 		let Click = `${Year}年${Month+1}月${Days}日${Hours}:${Min}:${sec}`
 		if(Hours<10){
 			Click = `${Year}年${Month+1}月${Days}日0${Hours}:${Min}:${sec}`
-		}
-		if(Min<10){
+		}else if(Min<10){
 			Click = `${Year}年${Month+1}月${Days}日${Hours}:0${Min}:${sec}`
-		}
-		if(sec<10){
+		} else if(sec<10){
 			Click = `${Year}年${Month+1}月${Days}日${Hours}:0${Min}:0${sec}`
+		}else{
+
 		}
 		return Click
 	}
