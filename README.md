@@ -1,1 +1,11 @@
-##### Django´î½¨ÍøÒ³ºó¶Ë²¢ÊµÏÖAPI½Ó¿Ú
+##### Djangoæ­å»ºåå°æœåŠ¡
+#### åœ¨setting.pyä¸­è®¾ç½®è§£å†³404é—®é¢˜
+```
+'DIRS': [
+            #os.path.join(BASE_DIR,'django-vue/dist')
+            'django-vue/dist'
+        ],
+		STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "django-vue/dist/static"),
+]
+```
