@@ -47,7 +47,7 @@ export default class ViewRank extends Vue{
 	flag:Boolean|undefined
 	current:number| undefined
 	timer:any
-	DateTime:Object|undefined
+	DateTime:any|undefined
 	private data(){
 		return 	{
 		MovieList:[],
@@ -60,6 +60,7 @@ export default class ViewRank extends Vue{
 	  return new Promise((resolve,reject)=>{
 		  	axios.get('http://127.0.0.1:8000/GetMoive').then(res=>{
 	   		this.MovieList = res.data.data.list
+			   (this as any)
 			   let{updateInfo,splitTotalBox,serverTime,totalBox,queryDate} = res.data.data
 			   this.DateTime['Time'] = serverTime
 			   this.DateTime['Total'] = totalBox
