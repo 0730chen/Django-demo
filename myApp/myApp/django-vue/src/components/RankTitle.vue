@@ -6,7 +6,9 @@
 		</div>
 		<div class="barNav" @click="HandleActive">
 			<span :class="{active:isActive}">综合票房</span>
-			<span :class="{active:!isActive}">切换图表</span>
+			<span :class="{active:!isActive}">
+				<router-link to="Chart">切换图表</router-link>
+				</span>
 		</div>
 		<div class="full" @click="fullScreen">
 			<svg class="icon" aria-hidden="true">
@@ -39,6 +41,9 @@ export default class TitleBar extends Vue {
             }
             screenfull.toggle()
         }
+	SelectChart(){
+		
+	}
 	HandleActive(){
 		this.isActive = !this.isActive
 	}

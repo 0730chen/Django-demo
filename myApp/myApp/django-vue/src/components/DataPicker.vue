@@ -53,7 +53,7 @@
         AllDay: any
         Year: any
         Mouth: any
-         strDate:string
+        strDate:any
 
         private data() {
             return {
@@ -67,16 +67,17 @@
                 strDate:''
             }
         }
-        HandleClick(e){
+        HandleClick(e:any){
             let day = e.target.innerText
-            this.strDate = `${this.Year}-${this.Mouth}-${day}`
-            let str = ''
+            this.strDate = `${this.Year}${this.Mouth}${day}`
             if(this.Mouth<10){
-                let str = `${this.Year}0${this.Mouth}${day}`
-            }else if(day<10){
-                let str = `${this.Year}${this.Mouth}0${day}`
+                this.strDate = `${this.Year}0${this.Mouth}${day}`
             }else{
-                str=`${this.Year}${this.Mouth}${day}`
+                this.strDate = `${this.Year}${this.Mouth}${day}`
+            }
+            if(this.Mouth<10 && day<10){
+                this.strDate = `${this.Year}0${this.Mouth}0${day}`
+            }else{
             }
             this.$emit('Date',this.strDate) 
         }

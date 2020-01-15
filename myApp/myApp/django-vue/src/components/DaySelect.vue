@@ -16,7 +16,7 @@ import DatePicker from './DataPicker.vue'
 export default class DateSelect extends Vue {
 	@Prop()
 	MovieData:any
-	DataSelect:string
+	DataSelect:any
 	private data() {
 		return {
 			name:'日历',
@@ -25,7 +25,7 @@ export default class DateSelect extends Vue {
 			DataSelect:''
 		}
 	}
-	HandleDate(msg){
+	HandleDate(msg:any){
 		this.DataSelect = msg
 		this.$emit("DateSelect",this.DataSelect)
 	}
@@ -65,6 +65,7 @@ export default class DateSelect extends Vue {
 <style lang="scss">
 	.dateSelect{
 		margin-top: 20px;
+		padding-top: 50px;
 		input{
 			font-size: 17px;
 			background-color: #535265 ;

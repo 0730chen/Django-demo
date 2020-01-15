@@ -50,7 +50,7 @@ export default class ViewRank extends Vue{
 	current:number| undefined
 	timer:any
 	DateTime:any|undefined
-	nowDate:string
+	nowDate:any|undefined
 	private data(){
 		return 	{
 		MovieList:[],
@@ -60,7 +60,7 @@ export default class ViewRank extends Vue{
 		nowDate:this.getnowDate(new Date())
 		}
 	}
-	getnowDate(value){
+	getnowDate(value:any){
 		let date = new Date(value)
 		let Y = date.getFullYear()
 		let M = date.getMonth()+1
@@ -75,7 +75,7 @@ export default class ViewRank extends Vue{
 		}
 		return str
 	}
-  getApi(arg){
+  getApi(arg:any){
 	  return new Promise((resolve,reject)=>{
 		  	axios.get(`http://127.0.0.1:8000/GetMoive?beginDate=${arg}`).then(res=>{
 	   		this.MovieList = res.data.data.list
@@ -94,7 +94,6 @@ export default class ViewRank extends Vue{
   }
   created() {
 	   let arg = this.nowDate
-	   console.log(arg)
    	   this.getApi(arg).then(()=>{
 	   this.HandleColor(0,event)
 	   this.$emit('Data',this.DateTime)
@@ -108,9 +107,15 @@ export default class ViewRank extends Vue{
 	  })
 	  return this.MovieList
   }
+  @Watch('DateSelect',{deep:true})
+  cheaChage(){
+	  let arg = this.DateSelect
+	  this.getApi(arg).then((res)=>{
+		  this.HandleColor(0,event)
+	   	this.$emit('Data',this.DateTime)
+	  })
+  }
   updated() {
-	  	let arg = this.DateSelect
-		console.log(arg)
 // 	 this.getApi(arg).then(()=>{
 // 	   this.HandleColor(0,event)
 // 	   this.$emit('Data',this.DateTime)

@@ -5,8 +5,8 @@ from .movie import run
 # from movie import run
 
 def GetMoive(request):
-	
-	url = 'http://piaofang.maoyan.com/second-box'
+	date = request.GET['beginDate']
+	url = 'http://piaofang.maoyan.com/second-box?beginDate='+date
 	rank = run.Movie(url,50)
 	res = rank.GetHtml()
 	

@@ -31,13 +31,13 @@ export default class OneMoive extends Vue {
   MovieMessage:Array<any>|undefined
   @Prop()
   MovieData:any
-  DateSelect:string
+  DateSelect:any
   private data() {
 	  return {
 		  DateSelect:''
 	  }
   }
-  HandleDate(msg){
+  HandleDate(msg:any){
 	 this.DateSelect = msg
 	 this.$emit('DateSelect',this.DateSelect)
   }
@@ -48,7 +48,7 @@ export default class OneMoive extends Vue {
 </script>
 <style lang="scss">
 	.OneMovie{
-		width: 400px;
+		width: 550px;
 		position: relative;
 		top: 0;
 		left: 100px;
@@ -69,11 +69,13 @@ export default class OneMoive extends Vue {
 		flex-direction: row;
 		div{
 			padding: 0 10px;
-		
+			span{
+				color: rgb(55, 55, 67)
+			}
 		}
 	}
 	.Info{
-		
+		font-size:40px;
 		color:#ffac00;
 	}
 </style>

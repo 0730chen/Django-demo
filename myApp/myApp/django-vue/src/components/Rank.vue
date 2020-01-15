@@ -27,7 +27,7 @@ export default class HelloWorld extends Vue {
   private msg!: string;
   MovieMessage!:Array<any>
   MovieData:Object|undefined
-  DateSelect:string   
+  DateSelect:string|undefined  
   private data() {
     return {
       MovieMessage:[],
@@ -38,7 +38,7 @@ export default class HelloWorld extends Vue {
   HandleMovie(msg:any){
     this.MovieMessage = msg
   }
-  HandleDateSelect(msg){
+  HandleDateSelect(msg:any){
     this.DateSelect = msg
   }
   HandleDate(date:any){

@@ -32,6 +32,11 @@ const routes = [
     path:'/Rank',
     name:'name',
     component:Home
+  },
+  {
+    path:'/Chart',
+    name:'chart',
+    component:()=>import('../components/MovieChart.vue')
   }
 ]
 
