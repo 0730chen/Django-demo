@@ -7,7 +7,7 @@
 		<div class="barNav" @click="HandleActive">
 			<span :class="{active:isActive}">综合票房</span>
 			<span :class="{active:!isActive}">
-				<router-link to="Chart">切换图表</router-link>
+				<router-link :to="{name:'chart',params:{query:Time}}" @click="SelectChart">切换图表</router-link>
 				</span>
 		</div>
 		<div class="full" @click="fullScreen">
@@ -19,13 +19,15 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import {Component, Watch} from 'vue-property-decorator'
+import {Component, Watch,Prop} from 'vue-property-decorator'
 import screenfull from 'screenfull'
 
 @Component({
 
 })
 export default class TitleBar extends Vue {
+	@Prop()
+	DateSelect:any
 	isActive:Boolean = true
 	Time:any
 	timer:any
@@ -42,7 +44,17 @@ export default class TitleBar extends Vue {
             screenfull.toggle()
         }
 	SelectChart(){
-		
+		console.log('haha')
+		console.log(this)
+	}
+	filterDate(date){
+		console.log(date)
+		let Y = date.FullYear().toString()
+		let M = date.getMonth()
+		let D = date.getdate()
+		M = M.length === 1?`0${M}`:`${M}`
+		D = D.lenght === 1?`0{D}`:`${D}`
+		return `${Y}${M}${D}`
 	}
 	HandleActive(){
 		this.isActive = !this.isActive

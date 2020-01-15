@@ -1,6 +1,6 @@
 <template>
 	<div class="Rank">
-		<TitleBar/>
+		<TitleBar :DateSelect="DateSelect"/>
     <div class="container"> 
     <OneMoive :MovieMessage="MovieMessage" :MovieData="MovieData" v-on:DateSelect = "HandleDateSelect"/>
     <div></div>

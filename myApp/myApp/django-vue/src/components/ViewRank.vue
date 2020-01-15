@@ -110,10 +110,12 @@ export default class ViewRank extends Vue{
   @Watch('DateSelect',{deep:true})
   cheaChage(){
 	  let arg = this.DateSelect
-	  this.getApi(arg).then((res)=>{
-		  this.HandleColor(0,event)
+	  setTimeout(()=>{
+		this.getApi(arg).then((res)=>{
+		this.HandleColor(0,event)
 	   	this.$emit('Data',this.DateTime)
 	  })
+	  },3000)
   }
   updated() {
 // 	 this.getApi(arg).then(()=>{
