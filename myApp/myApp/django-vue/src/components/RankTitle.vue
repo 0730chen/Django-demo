@@ -47,7 +47,7 @@ export default class TitleBar extends Vue {
 		console.log('haha')
 		console.log(this)
 	}
-	filterDate(date){
+	filterDate(date:any){
 		console.log(date)
 		let Y = date.FullYear().toString()
 		let M = date.getMonth()

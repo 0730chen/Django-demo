@@ -135,11 +135,12 @@ export default class ViewRank extends Vue{
 <style lang="scss">
 	.viewRank{
 		position: relative;
-		right:100px;
+		right:30px;
 		top: 0;
+		bottom: 10px;
 		font-size: 25px;
 		font-weight: 100;
-		height: 700px !important;
+		height: 680px !important;
 		margin-top: 20px;
 		background-color:  #30303b;
 		color: white;
@@ -169,7 +170,7 @@ export default class ViewRank extends Vue{
 		}
 	}
 	.viewRank::-webkit-scrollbar{/*滚动条里面小方块*/
-           display: none;
+           /*display: none;*/
 	}
 
 	.movie{

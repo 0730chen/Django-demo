@@ -51,7 +51,7 @@ export default class OneMoive extends Vue {
 		width: 550px;
 		position: relative;
 		top: 0;
-		left: 100px;
+		left: 30px;
 		background-color:  #30303b;
 		margin-top: 20px;
 		color: white;

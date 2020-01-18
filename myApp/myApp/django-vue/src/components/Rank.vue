@@ -54,6 +54,10 @@ export default class HelloWorld extends Vue {
     flex-direction: row;
     justify-content: space-between;
     background-color: #000;
+        max-height: 100%;
   }
+    .Rank{
+        background-color: #1f1f1f;
+    }
 
 </style>
