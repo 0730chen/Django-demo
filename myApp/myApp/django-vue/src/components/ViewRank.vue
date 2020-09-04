@@ -78,6 +78,7 @@ export default class ViewRank extends Vue{
   getApi(arg:any){
 	  return new Promise((resolve,reject)=>{
 		  	axios.get(`http://127.0.0.1:8000/GetMoive?beginDate=${arg}`).then(res=>{
+		  		console.log(res)
 	   		this.MovieList = res.data.data.list
 			   let{updateInfo,splitTotalBox,serverTime,totalBox,queryDate} = res.data.data
 			   this.DateTime['Time'] = serverTime
