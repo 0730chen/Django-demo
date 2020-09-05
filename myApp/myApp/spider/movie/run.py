@@ -13,5 +13,6 @@ class Movie:
 		res = requests.get(self.url,headers=head)
 		status = res.status_code
 		print(status)
+		print(res)
 		return res.text
 		
